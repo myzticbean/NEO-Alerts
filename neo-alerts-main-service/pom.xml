@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.neoalerts</groupId>
-    <artifactId>new-alerts-main-service</artifactId>
+    <artifactId>neo-alerts-main-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>new-alerts-main-service</name>
     <description>new-alerts-main-service</description>
