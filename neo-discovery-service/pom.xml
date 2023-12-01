@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.neoalerts</groupId>
-    <artifactId>user-management-service</artifactId>
+    <artifactId>neo-discovery-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>user-management-service</name>
-    <description>user-management-service</description>
+    <name>neo-discovery-service</name>
+    <description>neo-discovery-service</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2023.0.0-RC1</spring-cloud.version>
@@ -24,13 +24,23 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-data-cassandra</artifactId>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+<!--        </dependency>-->
+        <!-- DataStax Java Driver for Apache Cassandra -->
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
+            <groupId>com.datastax.oss</groupId>
+            <artifactId>java-driver-core</artifactId>
+            <version>4.10.0</version> <!-- Use the latest version available -->
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.datastax.astra</groupId>-->
+<!--            <artifactId>astra-spring-boot-starter</artifactId>-->
+<!--            <version>0.4</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -62,22 +72,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.14.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.datastax.oss</groupId>
-            <artifactId>java-driver-shaded-guava</artifactId>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.15</version> <!-- Use the latest version available -->
         </dependency>
 
 
