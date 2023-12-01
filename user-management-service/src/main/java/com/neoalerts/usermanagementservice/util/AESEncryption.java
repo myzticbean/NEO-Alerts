@@ -16,7 +16,6 @@ import java.util.Base64;
 public class AESEncryption {
 
     private static final String SECRET_KEY = "hKfiU7xgHuAwf8sIoL/7Dw==";
-//    private static final byte[] SALT = generateSalt();
 
     private static final byte[] SALT = {
             (byte) 0x01, (byte) 0x23, (byte) 0x45, (byte) 0x67,
@@ -64,14 +63,6 @@ public class AESEncryption {
 
         return new String(decrypted);
     }
-
-    /*
-    private static byte[] generateSalt() {
-        byte[] salt = new byte[16];
-        new SecureRandom().nextBytes(salt);
-        return salt;
-    }
-    */
 
     private static byte[] generateIv() {
         byte[] iv = new byte[16];

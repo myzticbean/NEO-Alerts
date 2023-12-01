@@ -11,6 +11,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @Configuration
 public class MySQLDataSourceConfig {
@@ -40,6 +41,7 @@ public class MySQLDataSourceConfig {
         dataSource.setUsername(username);
         dataSource.setPassword(AESEncryption.decrypt(password));
         dataSource.setDriverClassName(driverClassName);
+        dataSource.setConnectionProperties(getConProperties());
 
         return dataSource;
     }
@@ -50,7 +52,7 @@ public class MySQLDataSourceConfig {
         LocalContainerEntityManagerFactoryBean factory = builder
                 .dataSource(dataSource)
                 .packages("com.neoalerts.usermanagementservice.service.dao") // Set your entity package
-//                .persistenceUnit("yourPersistenceUnitName")
+                .persistenceUnit("default")
                 .properties(getJpaProperties()) // Set JPA properties
                 .build();
 
@@ -59,14 +61,18 @@ public class MySQLDataSourceConfig {
         return factory;
     }
 
+    private Properties getConProperties() {
+        Properties properties = new Properties();
+        properties.put("type", "com.zaxxer.hikari.HikariDataSource");
+        properties.put("hikari.maximumPoolSize", 10);
+        return properties;
+    }
+
     private Map<String, ?> getJpaProperties() {
         Map<String, String> propertiesMap = new HashMap<>();
         propertiesMap.put("hibernate.show_sql", String.valueOf(showSql));
         propertiesMap.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-//        Properties properties = new Properties();
-//        properties.setProperty("hibernate.show_sql", String.valueOf(showSql));
-//        // Add other JPA properties as needed
-//        return properties;
+        propertiesMap.put("hibernate.ddl-auto", hibernateDDLAuto);
         return propertiesMap;
     }
 
