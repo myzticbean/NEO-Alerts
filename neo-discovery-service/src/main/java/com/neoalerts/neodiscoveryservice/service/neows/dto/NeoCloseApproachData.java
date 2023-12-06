@@ -1,12 +1,13 @@
-package com.neoalerts.neodiscoveryservice.service.dao;
+package com.neoalerts.neodiscoveryservice.service.neows.dto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 
-@NoArgsConstructor @AllArgsConstructor
-@Builder @Getter @Setter
-public class NEOCloseApproachData {
+@Getter @Setter @ToString
+public class NeoCloseApproachData {
 
     private Date closeApproachDate;
 

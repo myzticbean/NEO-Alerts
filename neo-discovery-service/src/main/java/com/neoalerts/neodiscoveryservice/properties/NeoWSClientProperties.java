@@ -1,27 +1,24 @@
-package com.neoalerts.neodiscoveryservice;
+package com.neoalerts.neodiscoveryservice.properties;
 
 import com.neoalerts.neodiscoveryservice.util.AESEncryption;
-import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 @ConfigurationProperties(prefix = "neows.client")
-public class NeoWSClientConfig {
+@Slf4j @Getter @Setter
+public class NeoWSClientProperties {
 
-    @Getter(AccessLevel.PRIVATE)
     private String apiKey;
-    private final String decryptedApiKey;
+    private String decryptedApiKey;
 
-    public NeoWSClientConfig() {
+    public String getDecryptedKey() {
         try {
             decryptedApiKey = AESEncryption.decrypt(apiKey);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("Exception occurred: ", e);
         }
-    }
-
-    public String getApiKey() {
         return decryptedApiKey;
     }
 

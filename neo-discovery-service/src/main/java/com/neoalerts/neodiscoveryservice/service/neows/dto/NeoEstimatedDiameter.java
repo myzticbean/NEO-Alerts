@@ -1,12 +1,11 @@
-package com.neoalerts.neodiscoveryservice.service.dao;
+package com.neoalerts.neodiscoveryservice.service.neows.dto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@Getter @Setter
-public class NEOEstimatedDiameter {
+@Getter @Setter @ToString
+public class NeoEstimatedDiameter {
 
     private Long neoReferenceId;
 

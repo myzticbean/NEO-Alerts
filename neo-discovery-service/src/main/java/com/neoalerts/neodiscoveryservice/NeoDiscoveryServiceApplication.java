@@ -1,7 +1,9 @@
 package com.neoalerts.neodiscoveryservice;
 
 import com.neoalerts.neodiscoveryservice.properties.DataStaxAstraProperties;
+import com.neoalerts.neodiscoveryservice.properties.NeoWSClientProperties;
 import com.neoalerts.neodiscoveryservice.properties.SpringCassandraProperties;
+import com.neoalerts.neodiscoveryservice.service.NasaAPIService;
 import com.neoalerts.neodiscoveryservice.util.AESEncryption;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -10,18 +12,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.cassandra.CqlSessionBuilderCustomizer;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.nio.file.Path;
 
 @SpringBootApplication
-@EnableConfigurationProperties({DataStaxAstraProperties.class, SpringCassandraProperties.class, NeoWSClientConfig.class})
+@EnableConfigurationProperties({DataStaxAstraProperties.class, SpringCassandraProperties.class, NeoWSClientProperties.class})
 @EnableFeignClients
 @Slf4j
 public class NeoDiscoveryServiceApplication implements CommandLineRunner {
 
+
+    private static NasaAPIService nasaAPIService;
+
     public static void main(String[] args) {
-        SpringApplication.run(NeoDiscoveryServiceApplication.class, args);
+        ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(NeoDiscoveryServiceApplication.class, args);
+//        nasaAPIService = (NasaAPIService) configurableApplicationContext.getBeanFactory().getBean("nasaAPIService");
     }
 
     /**
@@ -54,5 +61,6 @@ public class NeoDiscoveryServiceApplication implements CommandLineRunner {
     @Override
     public void run(String... args) {
         log.warn("Server is up!");
+
     }
 }
